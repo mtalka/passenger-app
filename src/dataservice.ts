@@ -7,3 +7,12 @@ export const getAllPosts = async () => {
     console.log("got the posts:", result.data);
     return result.data;
 };
+
+export const createPost = async (title: string, text: string) => {
+    const result = await axios.post(`${API_URL}/posts`, {
+        title,
+        text
+    });
+    console.log("created post:", result.data);
+    return result.data;
+}

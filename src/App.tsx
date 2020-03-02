@@ -1,49 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./App.css";
-import { getAllPosts, createPost } from "./dataservice";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Navigation from "./components/Navigation";
+import Discover from "./components/Discover";
+import About from "./components/About";
 
 function App() {
-    const [posts, setPosts]: any[] = useState([]);
-    const [title, setTitle]: any = useState("");
-    const [feedback, setFeedback]: any = useState("");
-
-    useEffect(() => {
-        getAllPosts().then(result => {
-            setPosts(result);
-        });
-    }, []);
-
-    function handleSubmit(event: any) {
-        event.preventDefault();
-        console.log(title, feedback);
-        createPost(title, feedback).then(() => {
-            setTitle("");
-            setFeedback("");
-        })
-    }
-
     return (
-        <div>
-            <h1>Passenger app</h1>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Otsikko:
-                    <input type="text" value={title} onChange={e => setTitle(e.target.value)} />
-                </label>
-                <label>
-                    Palaute:
-                    <textarea value={feedback} onChange={e => setFeedback(e.target.value)} />
-                </label>
-                <input type="submit" value="Submit" />
-            </form>
-            {posts.map((p: { title: string; text: string; date: Date }) => (
-                <>
-                    <div>{p.title}</div>
-                    <div>{p.text}</div>
-                    <div>{p.date}</div>
-                </>
-            ))}
-        </div>
+        <BrowserRouter>
+            <div>
+                <Navigation />
+                <Switch>
+                    <Route exact path="/" component={Discover} />
+                    <Route path="/about" component={About} />
+                </Switch>
+            </div>
+        </BrowserRouter>
     );
 }
 

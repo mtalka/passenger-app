@@ -1,57 +1,41 @@
-import React, { useEffect, useState } from "react";
-import { getAllPosts, createPost } from "../dataservice";
+import React, { useEffect } from "react";
 import AddModal from "./AddModal";
+import * as postActions from "../redux/actions/postActions";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
-function Discover() {
-    const [posts, setPosts]: any[] = useState([]);
-    const [title, setTitle]: any = useState("");
-    const [feedback, setFeedback]: any = useState("");
-
+function Discover(props: any) {
     useEffect(() => {
-        getAllPosts().then(result => {
-            setPosts(result);
-        });
-    }, []);
-
-    function handleSubmit(event: any) {
-        event.preventDefault();
-        console.log(title, feedback);
-        createPost(title, feedback).then(() => {
-            setTitle("");
-            setFeedback("");
-        });
-    }
+        props.actions.getPostsAction();
+    }, [props.actions]);
 
     return (
         <div>
             <AddModal />
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Otsikko:
-                    <input
-                        type="text"
-                        value={title}
-                        onChange={e => setTitle(e.target.value)}
-                    />
-                </label>
-                <label>
-                    Palaute:
-                    <textarea
-                        value={feedback}
-                        onChange={e => setFeedback(e.target.value)}
-                    />
-                </label>
-                <input type="submit" value="Submit" />
-            </form>
-            {posts.map((p: { title: string; text: string; date: Date }) => (
-                <>
-                    <div>{p.title}</div>
-                    <div>{p.text}</div>
-                    <div>{p.date}</div>
-                </>
-            ))}
+            {props.posts.map(
+                (p: { title: string; text: string; date: Date }) => (
+                    <div key={p.title}>
+                        <div>{p.title}</div>
+                        <div>{p.text}</div>
+                        <div>{p.date}</div>
+                    </div>
+                )
+            )}
         </div>
     );
 }
 
-export default Discover;
+function mapDispatchToProps(dispatch: any) {
+    return {
+        actions: bindActionCreators(postActions, dispatch)
+    };
+}
+
+function mapStateToProps(state: any) {
+    const posts = state.posts.posts;
+    return {
+        posts
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Discover);

@@ -1,0 +1,19 @@
+.App {
+    text-align: center;
+}
+
+// Components
+
+.post-card {
+    margin: 1rem;
+}
+
+.bottom-bar {
+    margin-bottom: 2rem;
+}
+
+// Bootstrap overrides
+
+.navbar-expand {
+    justify-content: center !important;
+}

@@ -7,6 +7,8 @@ import { bindActionCreators } from "redux";
 function AddModal(props: any) {
     const [title, setTitle]: any = useState("");
     const [feedback, setFeedback]: any = useState("");
+    const [city, setCity]: any = useState("");
+    const [line, setLine]: any = useState("");
     const [show, setShow] = useState(false);
 
     const handleShow = () => setShow(true);
@@ -14,10 +16,12 @@ function AddModal(props: any) {
 
     function handleSubmit(event: any) {
         event.preventDefault();
-        console.log(title, feedback);
-        props.actions.createPostAction(title, feedback);
+        console.log(title, feedback, city, line);
+        props.actions.createPostAction(title, feedback, city, line);
         setTitle("");
         setFeedback("");
+        setCity("");
+        setLine("");
         setShow(false);
     }
 
@@ -48,7 +52,23 @@ function AddModal(props: any) {
                                 onChange={e => setFeedback(e.target.value)}
                             />
                         </label>
-                        <input type="submit" value="Submit" />
+                        <label>
+                            Kaupunki:
+                            <textarea
+                                value={city}
+                                onChange={e => setCity(e.target.value)}
+                            />
+                        </label>
+                        <label>
+                            Linja:
+                            <textarea
+                                value={line}
+                                onChange={e => setLine(e.target.value)}
+                            />
+                        </label>
+                        <div>
+                            <input type="submit" value="Submit" />
+                        </div>
                     </form>
                 </Modal.Body>
                 <Modal.Footer>

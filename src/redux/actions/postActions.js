@@ -11,10 +11,10 @@ export function getPostsAction() {
     };
 }
 
-export function createPostAction(title, text) {
+export function createPostAction(title, text, city, line) {
     return (dispatch, getState) => {
         let post;
-        createPost(title, text).then(result => {
+        createPost(title, text, city, line).then(result => {
             post = result;
             console.log(post);
             dispatch({ type: "CREATE_POST", post });

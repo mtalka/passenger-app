@@ -8,11 +8,18 @@ export const getAllPosts = async () => {
     return result.data;
 };
 
-export const createPost = async (title: string, text: string) => {
+export const createPost = async (
+    title: string,
+    text: string,
+    city: string,
+    line: string
+) => {
     console.log(title, text);
     const result = await axios.post(`${API_URL}/posts`, {
         title,
-        text
+        text,
+        city,
+        line
     });
     console.log("created post:", result.data);
     return result.data;

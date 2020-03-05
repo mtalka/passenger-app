@@ -3,6 +3,8 @@ import AddModal from "./AddModal";
 import * as postActions from "../redux/actions/postActions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import PostCard from "./PostCard";
+import { Navbar } from "react-bootstrap";
 
 function Discover(props: any) {
     useEffect(() => {
@@ -10,18 +12,32 @@ function Discover(props: any) {
     }, [props.actions]);
 
     return (
-        <div>
-            <AddModal />
-            {props.posts.map(
-                (p: { title: string; text: string; date: Date }) => (
-                    <div key={p.title}>
-                        <div>{p.title}</div>
-                        <div>{p.text}</div>
-                        <div>{p.date}</div>
-                    </div>
-                )
-            )}
-        </div>
+        <>
+            <div>
+                {props.posts.map(
+                    (p: {
+                        title: string;
+                        text: string;
+                        date: Date;
+                        city: string;
+                        line: string;
+                    }) => (
+                        <>
+                            <PostCard
+                                title={p.title}
+                                text={p.text}
+                                date={p.date}
+                                city={p.city}
+                                line={p.line}
+                            />
+                        </>
+                    )
+                )}
+            </div>
+            <Navbar fixed="bottom" className="bottom-bar">
+                <AddModal />
+            </Navbar>
+        </>
     );
 }
 

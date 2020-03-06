@@ -27,7 +27,7 @@ function AddModal(props: any) {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            <Button variant="danger" onClick={handleShow}>
                 Lisää palaute
             </Button>
 

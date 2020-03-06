@@ -4,12 +4,12 @@ import { NavLink } from "react-router-dom";
 
 function Navigation() {
     return (
-        <Navbar bg="light" variant="light">
-            <NavLink to="/" activeClassName="activeLink">
-                <Navbar.Brand>Passenger App</Navbar.Brand>
-            </NavLink>
+        <Navbar bg="light" variant="light" sticky="top">
             <Nav className="mr-auto">
-                <NavLink to="/about" activeClassName="activeLink">
+                <NavLink to="/" activeClassName="activeLink" className="topbar-nav-link">
+                    Syöte
+                </NavLink>
+                <NavLink to="/about" activeClassName="activeLink" className="topbar-nav-link">
                     Tietoa
                 </NavLink>
             </Nav>
@@ -18,6 +18,7 @@ function Navigation() {
                     alignRight
                     id="dropdown-item-button"
                     title="Kaupunki"
+                    variant="danger"
                 >
                     <Dropdown.Item eventKey="1">Helsinki</Dropdown.Item>
                     <Dropdown.Item eventKey="2">Turku</Dropdown.Item>

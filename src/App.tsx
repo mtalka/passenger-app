@@ -8,7 +8,7 @@ import About from "./components/About";
 function App() {
     return (
         <BrowserRouter>
-            <div>
+            <div className="app-wrapper">
                 <Navigation />
                 <Switch>
                     <Route exact path="/" component={Discover} />

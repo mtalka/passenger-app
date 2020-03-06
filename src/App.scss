@@ -18,20 +18,23 @@
 // Bottom modal button
 
 .bottom-bar {
-    backdrop-filter: brightness(80%);
+    backdrop-filter: blur(3px);
     padding: 1rem 1rem 1rem 1rem !important;
+    background-color: rgba(255,255,255,0.5);
+}
+
+.add-modal-button {
+    padding: .375rem 4rem !important;
 }
 
 // Bootstrap overrides
 
 .card {
     border: 0 !important;
+    border-radius: 0 !important;
 }
 
 .navbar-expand {
     justify-content: center !important;
 }
 
-.modal {
-    backdrop-filter: blur(3px);
-}

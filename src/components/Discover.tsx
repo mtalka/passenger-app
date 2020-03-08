@@ -24,7 +24,6 @@ function Discover(props: any) {
                     }) => (
                         <>
                             <PostCard
-                                key={p.title}
                                 title={p.title}
                                 text={p.text}
                                 date={p.date}

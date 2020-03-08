@@ -14,8 +14,10 @@ function PostCard(props: any) {
         options
     );
 
+    const dateKey = new Date(props.date).getTime();
+
     return (
-        <div key={props.title} className="post-card">
+        <div key={dateKey} className="post-card">
             <Card>
                 <Card.Header className="post-card-title">
                     {props.title}

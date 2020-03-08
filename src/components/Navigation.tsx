@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Navbar, Nav, Dropdown, DropdownButton } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-function Navigation() {
+import * as postActions from "../redux/actions/postActions";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
+function Navigation(props: any) {
+    const [filter, setFilter]: any = useState(undefined);
+
+    function filtering(filterParam: string) {
+        setFilter(filterParam);
+        props.actions.filterPosts(filterParam);
+    }
+
     return (
         <Navbar bg="light" variant="light" sticky="top">
             <Nav className="mr-auto">
@@ -24,17 +35,29 @@ function Navigation() {
                 <DropdownButton
                     alignRight
                     id="dropdown-item-button"
-                    title="Kaupunki"
+                    title={filter ? filter : "Kaupunki"}
                     variant="danger"
+                    value={filter}
+                    onSelect={(eventKey: any, event: Object) =>
+                        filtering(eventKey)
+                    }
                 >
-                    <Dropdown.Item eventKey="1">Helsinki</Dropdown.Item>
-                    <Dropdown.Item eventKey="2">Turku</Dropdown.Item>
+                    <Dropdown.Item eventKey="Helsinki">Helsinki</Dropdown.Item>
+                    <Dropdown.Item eventKey="Turku">Turku</Dropdown.Item>
                     <Dropdown.Divider />
-                    <Dropdown.Item eventKey="4">Näytä kaikki</Dropdown.Item>
+                    <Dropdown.Item eventKey={undefined}>
+                        Näytä kaikki
+                    </Dropdown.Item>
                 </DropdownButton>
             </Dropdown>
         </Navbar>
     );
 }
 
-export default Navigation;
+function mapDispatchToProps(dispatch: any) {
+    return {
+        actions: bindActionCreators(postActions, dispatch)
+    };
+}
+
+export default connect(null, mapDispatchToProps)(Navigation);

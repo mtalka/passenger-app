@@ -1,15 +1,22 @@
 import React from "react";
 import { Navbar, Nav, Dropdown, DropdownButton } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-
 function Navigation() {
     return (
         <Navbar bg="light" variant="light" sticky="top">
             <Nav className="mr-auto">
-                <NavLink to="/" activeClassName="activeLink" className="topbar-nav-link">
+                <NavLink
+                    to="/"
+                    activeClassName="activeLink"
+                    className="topbar-nav-link"
+                >
                     Syöte
                 </NavLink>
-                <NavLink to="/about" activeClassName="activeLink" className="topbar-nav-link">
+                <NavLink
+                    to="/about"
+                    activeClassName="activeLink"
+                    className="topbar-nav-link"
+                >
                     Tietoa
                 </NavLink>
             </Nav>

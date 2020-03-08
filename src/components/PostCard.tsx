@@ -2,17 +2,30 @@ import React from "react";
 import { Card } from "react-bootstrap";
 
 function PostCard(props: any) {
+    const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+    };
+
+    const dateString = new Date(props.date).toLocaleDateString(
+        "fi-FI",
+        options
+    );
+
     return (
         <div key={props.title} className="post-card">
             <Card>
-                <Card.Header>
-                    <div>{props.title}</div>
+                <Card.Header className="post-card-title">
+                    {props.title}
                 </Card.Header>
                 <Card.Body>
-                    <div>{props.text}</div>
-                    <div>{props.date}</div>
-                    <div>{props.city}</div>
-                    <div>{props.line}</div>
+                    <Card.Text>{props.text}</Card.Text>
+                    <div className="date-string">
+                        Kaupungissa {props.city}, linjalla {props.line}{" "}
+                        <div>{dateString}</div>
+                    </div>
                 </Card.Body>
             </Card>
         </div>

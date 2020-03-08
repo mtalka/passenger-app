@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal, Form } from "react-bootstrap";
 import * as postActions from "../redux/actions/postActions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -27,7 +27,11 @@ function AddModal(props: any) {
 
     return (
         <>
-            <Button variant="danger" onClick={handleShow} className="add-modal-button">
+            <Button
+                variant="danger"
+                onClick={handleShow}
+                className="add-modal-button"
+            >
                 Lisää palaute
             </Button>
 
@@ -36,46 +40,66 @@ function AddModal(props: any) {
                     <Modal.Title>Lisää palaute</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <form onSubmit={handleSubmit}>
-                        <label>
-                            Otsikko:
-                            <input
+                    <Form onSubmit={handleSubmit} className="form-style">
+                        <Form.Group controlId="formTitle">
+                            <Form.Label>Otsikko</Form.Label>
+                            <Form.Control
                                 type="text"
                                 value={title}
-                                onChange={e => setTitle(e.target.value)}
+                                onChange={(
+                                    e: React.ChangeEvent<HTMLInputElement>
+                                ) => setTitle(e.target.value)}
+                                placeholder="Syötä otsikko"
                             />
-                        </label>
-                        <label>
-                            Palaute:
-                            <textarea
+                        </Form.Group>
+                        <Form.Group controlId="formText">
+                            <Form.Label>Palaute</Form.Label>
+                            <Form.Control
+                                type="text"
                                 value={feedback}
-                                onChange={e => setFeedback(e.target.value)}
+                                onChange={(
+                                    e: React.ChangeEvent<HTMLTextAreaElement>
+                                ) => setFeedback(e.target.value)}
+                                placeholder="Kirjoita kaikki mitä sydämellä on"
                             />
-                        </label>
-                        <label>
-                            Kaupunki:
-                            <textarea
+                        </Form.Group>
+                        <Form.Group controlId="formSelect">
+                            <Form.Label>Valitse kaupunki</Form.Label>
+                            <Form.Control
+                                as="select"
                                 value={city}
-                                onChange={e => setCity(e.target.value)}
-                            />
-                        </label>
-                        <label>
-                            Linja:
-                            <textarea
+                                onChange={(
+                                    e: React.ChangeEvent<HTMLSelectElement>
+                                ) => setCity(e.target.value)}
+                            >
+                                <option value="" selected disabled>
+                                    Valitse
+                                </option>
+                                <option value="Helsinki">Helsinki</option>
+                                <option value="Turku">Turku</option>
+                            </Form.Control>
+                        </Form.Group>
+                        <Form.Group controlId="formLine">
+                            <Form.Label>Linja</Form.Label>
+                            <Form.Control
+                                type="text"
                                 value={line}
-                                onChange={e => setLine(e.target.value)}
+                                onChange={(
+                                    e: React.ChangeEvent<HTMLTextAreaElement>
+                                ) => setLine(e.target.value)}
+                                placeholder="Linjan numero"
                             />
-                        </label>
-                        <div>
-                            <input type="submit" value="Submit" />
-                        </div>
-                    </form>
+                        </Form.Group>
+                        <Button
+                            variant="primary"
+                            value="Submit"
+                            type="submit"
+                            onClick={handleClose}
+                        >
+                            Valmis
+                        </Button>
+                    </Form>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="primary" onClick={handleClose}>
-                        Valmis
-                    </Button>
-                </Modal.Footer>
             </Modal>
         </>
     );

@@ -5,13 +5,21 @@
 }
 
 .post-card {
-    margin: .75rem;
+    margin: 0.75rem;
+
+    .post-card-title {
+        font-weight: 600;
+    }
+
+    .date-string {
+        font-size: 0.75rem;
+    }
 }
 
 // Top navigation
 
 .topbar-nav-link {
-    padding: .5rem;
+    padding: 0.5rem;
     color: #dc3545;
 }
 
@@ -20,11 +28,11 @@
 .bottom-bar {
     backdrop-filter: blur(3px);
     padding: 1rem 1rem 1rem 1rem !important;
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .add-modal-button {
-    padding: .375rem 4rem !important;
+    padding: 0.375rem 4rem !important;
 }
 
 // Bootstrap overrides
@@ -38,3 +46,10 @@
     justify-content: center !important;
 }
 
+.form-style {
+    text-align: center;
+
+    .form-group {
+        text-align: left;
+    }
+}

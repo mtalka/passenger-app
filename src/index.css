@@ -5,8 +5,12 @@ body {
         "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #17a2b8 !important;
-    background: #17a2b8 !important;
+    background-color: #FFF !important;
+    background: #FFF !important;
+}
+
+body::-webkit-scrollbar {
+    display: none;
 }
 
 code {

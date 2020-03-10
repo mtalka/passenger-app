@@ -7,9 +7,11 @@ function About() {
             <Card bg="danger" text="white" className="about-card">
                 <Card.Body>
                     <Card.Title>Menikö hermot?</Card.Title>
-                    <Card.Text>
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content.
+                    <Card.Text>Et ole yksin.
+                        <br></br><br></br>
+                        Kuratoimme saapuneet palautteet ja lähetämme ne kerran vuosineljänneksessä paperisena kunkin kaupungin liikelaitokselle.
+                        <br></br><br></br>
+                        Yksityisautoillen olisit jo perillä.
                     </Card.Text>
                 </Card.Body>
             </Card>
